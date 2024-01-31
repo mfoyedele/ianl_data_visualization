@@ -6,24 +6,21 @@ import * as Yup from 'yup';
 import { accountService, alertService } from '@/_services';
 
 function Register({ history }) {
-    const initialValues = {
-        // title: '',
+    const initialValues = {        
         firstName: '',
         lastName: '',
         email: '',
+        password: '',
         phoneNumber: '',
         address: '',
         city: '',
         country: '',
-        state: '',        
-        password: '',
+        state: '',
         confirmPassword: '',
         acceptTerms: false
     };
 
-    const validationSchema = Yup.object().shape({
-        // title: Yup.string()
-        //     .required('Title is required'),
+    const validationSchema = Yup.object().shape({        
         firstName: Yup.string()
             .required('First Name is required'),
         lastName: Yup.string()
@@ -31,21 +28,16 @@ function Register({ history }) {
         email: Yup.string()
             .email('Email is invalid')
             .required('Email is required'),
-        phoneNumber: Yup.string()
-            .phoneNumber('Phone Number is invalid')
+        phoneNumber: Yup.string()            
             .required('Phone Number is required'),
-        address: Yup.string()
-                .address('Address is invalid')
-                .required('Address is required'),
-        city: Yup.string()
-            .city('City is invalid')
+            address: Yup.string()                
+            .required('Address is required'),
+        city: Yup.string()            
             .required('City is required'),
-        state: Yup.string()
-            .state('State is invalid')
+        state: Yup.string()            
             .required('State is required'),
-        country: Yup.string()
-            .country('Country is invalid')
-            .required('Country is required'),
+        country: Yup.string()            
+            .required('Country is required'),    
         password: Yup.string()
             .min(6, 'Password must be at least 6 characters')
             .required('Password is required'),
@@ -75,18 +67,7 @@ function Register({ history }) {
                 <Form>
                     <h3 className="card-header">Register</h3>
                     <div className="card-body">
-                        <div className="form-row">
-                            {/* <div className="form-group col">
-                                <label>Title</label>
-                                <Field name="title" as="select" className={'form-control' + (errors.title && touched.title ? ' is-invalid' : '')}>
-                                    <option value=""></option>
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                    <option value="Miss">Miss</option>
-                                    <option value="Ms">Ms</option>
-                                </Field>
-                                <ErrorMessage name="title" component="div" className="invalid-feedback" />
-                            </div> */}
+                        <div className="form-row">                            
                             <div className="form-group col-5">
                                 <label>First Name</label>
                                 <Field name="firstName" type="text" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
@@ -96,13 +77,14 @@ function Register({ history }) {
                                 <label>Last Name</label>
                                 <Field name="lastName" type="text" className={'form-control' + (errors.lastName && touched.lastName ? ' is-invalid' : '')} />
                                 <ErrorMessage name="lastName" component="div" className="invalid-feedback" />
-                            </div>                        
-                        </div>
+                            </div>
+                        </div>                        
                         <div className="form-group">
                             <label>Email</label>
                             <Field name="email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                         </div>
+                        <div className="form-row">
                         <div className="form-group col-5">
                                 <label>Phone Number</label>
                                 <Field name="phoneNumber" type="text" className={'form-control' + (errors.phoneNumber && touched.phoneNumber ? ' is-invalid' : '')} />
@@ -112,7 +94,9 @@ function Register({ history }) {
                                 <label>Address</label>
                                 <Field name="address" type="text" className={'form-control' + (errors.address && touched.address ? ' is-invalid' : '')} />
                                 <ErrorMessage name="address" component="div" className="invalid-feedback" />
-                            </div>
+                            </div>   
+                        </div>
+                        <div className="form-row">
                         <div className="form-group col-5">
                                 <label>City</label>
                                 <Field name="city" type="text" className={'form-control' + (errors.city && touched.city ? ' is-invalid' : '')} />
@@ -122,6 +106,7 @@ function Register({ history }) {
                                 <label>State</label>
                                 <Field name="state" type="text" className={'form-control' + (errors.state && touched.state ? ' is-invalid' : '')} />
                                 <ErrorMessage name="state" component="div" className="invalid-feedback" />
+                        </div>   
                         </div>
                         <div className="form-group">
                             <label>Country</label>
