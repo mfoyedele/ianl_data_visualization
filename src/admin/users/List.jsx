@@ -37,8 +37,7 @@ function List({ match }) {
                 </thead>
                 <tbody>
                     {users && users.map(user =>
-                        <tr key={user.id}>
-                            <td>{user.title} {user.firstName} {user.lastName}</td>
+                        <tr key={user.id}>                            
                             <td>{user.email}</td>
                             <td>{user.role}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
