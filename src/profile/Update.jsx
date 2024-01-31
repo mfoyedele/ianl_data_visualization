@@ -28,20 +28,15 @@ function Update({ history }) {
         email: Yup.string()
             .email('Email is invalid')
             .required('Email is required'),
-        phoneNumber: Yup.string()
-            .phoneNumber('Phone Number is invalid')
+        phoneNumber: Yup.string()            
             .required('Phone Number is required'),
-        address: Yup.string()
-                .address('Address is invalid')
-                .required('Address is required'),
-        city: Yup.string()
-            .city('City is invalid')
+            address: Yup.string()                
+            .required('Address is required'),
+        city: Yup.string()            
             .required('City is required'),
-        state: Yup.string()
-            .state('State is invalid')
+        state: Yup.string()            
             .required('State is required'),
-        country: Yup.string()
-            .country('Country is invalid')
+        country: Yup.string()            
             .required('Country is required'),
         password: Yup.string()
             .min(6, 'Password must be at least 6 characters'),
