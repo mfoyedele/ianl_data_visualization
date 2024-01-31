@@ -10,18 +10,19 @@ function AddEdit({ history, match }) {
     const isAddMode = !id;
     
     const initialValues = {
-        title: '',
         firstName: '',
         lastName: '',
         email: '',
-        role: '',
+        phoneNumber: '',
+        address: '',
+        city: '',
+        country: '',
+        state: '',        
         password: '',
         confirmPassword: ''
     };
 
     const validationSchema = Yup.object().shape({
-        title: Yup.string()
-            .required('Title is required'),
         firstName: Yup.string()
             .required('First Name is required'),
         lastName: Yup.string()
@@ -29,6 +30,21 @@ function AddEdit({ history, match }) {
         email: Yup.string()
             .email('Email is invalid')
             .required('Email is required'),
+        phoneNumber: Yup.string()
+            .phoneNumber('Phone Number is invalid')
+            .required('Phone Number is required'),
+        address: Yup.string()
+                .address('Address is invalid')
+                .required('Address is required'),
+        city: Yup.string()
+            .city('City is invalid')
+            .required('City is required'),
+        state: Yup.string()
+            .state('State is invalid')
+            .required('State is required'),
+        country: Yup.string()
+            .country('Country is invalid')
+            .required('Country is required'),
         role: Yup.string()
             .required('Role is required'),
         password: Yup.string()
@@ -81,7 +97,7 @@ function AddEdit({ history, match }) {
                     if (!isAddMode) {
                         // get user and set form fields
                         accountService.getById(id).then(user => {
-                            const fields = ['title', 'firstName', 'lastName', 'email', 'role'];
+                            const fields = ['firstName', 'lastName', 'email', 'phoneNumber', 'address', 'city', 'country', 'state', 'role'];
                             fields.forEach(field => setFieldValue(field, user[field], false));
                         });
                     }
@@ -90,18 +106,7 @@ function AddEdit({ history, match }) {
                 return (
                     <Form>
                         <h1>{isAddMode ? 'Add User' : 'Edit User'}</h1>
-                        <div className="form-row">
-                            <div className="form-group col">
-                                <label>Title</label>
-                                <Field name="title" as="select" className={'form-control' + (errors.title && touched.title ? ' is-invalid' : '')}>
-                                    <option value=""></option>
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                    <option value="Miss">Miss</option>
-                                    <option value="Ms">Ms</option>
-                                </Field>
-                                <ErrorMessage name="title" component="div" className="invalid-feedback" />
-                            </div>
+                        <div className="form-row">                            
                             <div className="form-group col-5">
                                 <label>First Name</label>
                                 <Field name="firstName" type="text" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
@@ -113,6 +118,7 @@ function AddEdit({ history, match }) {
                                 <ErrorMessage name="lastName" component="div" className="invalid-feedback" />
                             </div>
                         </div>
+
                         <div className="form-row">
                             <div className="form-group col-7">
                                 <label>Email</label>
@@ -128,6 +134,31 @@ function AddEdit({ history, match }) {
                                 </Field>
                                 <ErrorMessage name="role" component="div" className="invalid-feedback" />
                             </div>
+                        </div>
+                        <div className="form-group col-5">
+                                <label>Phone Number</label>
+                                <Field name="phoneNumber" type="text" className={'form-control' + (errors.phoneNumber && touched.phoneNumber ? ' is-invalid' : '')} />
+                                <ErrorMessage name="phoneNumber" component="div" className="invalid-feedback" />
+                            </div>
+                            <div className="form-group col-5">
+                                <label>Address</label>
+                                <Field name="address" type="text" className={'form-control' + (errors.address && touched.address ? ' is-invalid' : '')} />
+                                <ErrorMessage name="address" component="div" className="invalid-feedback" />
+                            </div>
+                        <div className="form-group col-5">
+                                <label>City</label>
+                                <Field name="city" type="text" className={'form-control' + (errors.city && touched.city ? ' is-invalid' : '')} />
+                                <ErrorMessage name="city" component="div" className="invalid-feedback" />
+                        </div>
+                        <div className="form-group col-5">
+                                <label>State</label>
+                                <Field name="state" type="text" className={'form-control' + (errors.state && touched.state ? ' is-invalid' : '')} />
+                                <ErrorMessage name="state" component="div" className="invalid-feedback" />
+                        </div>
+                        <div className="form-group">
+                            <label>Country</label>
+                            <Field name="country" type="text" className={'form-control' + (errors.country && touched.country ? ' is-invalid' : '')} />
+                            <ErrorMessage name="country" component="div" className="invalid-feedback" />
                         </div>
                         {!isAddMode &&
                             <div>
