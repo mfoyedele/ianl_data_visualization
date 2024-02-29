@@ -35,8 +35,8 @@ module.exports = {
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'https://ianl-device-endpoint.azurewebsites.net/api/v1'
-            // https://ianl-device-endpoint.azurewebsites.net/api/v1/Devices
+            apiUrl: 'https://ianl-device-endpoint.azurewebsites.net/api/v1',
+            apiDevice: 'https://ianl-device-endpoint.azurewebsites.net/api/v1/Devices'
         })
     }
 }
